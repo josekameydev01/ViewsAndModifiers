@@ -8,14 +8,17 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var colorText = true
     var body: some View {
         Text("Hello, Swift!")
-            .padding()
-            .background(.red)
-            .padding()
-            .background(.blue)
-            .padding()
-            .background(.green)
+            .font(.largeTitle.bold())
+            .foregroundStyle(colorText ? .black : .red)
+        
+        
+        Button("Change Color") {
+            colorText.toggle()
+        }
+        .buttonStyle(.borderedProminent)
     }
 }
 
