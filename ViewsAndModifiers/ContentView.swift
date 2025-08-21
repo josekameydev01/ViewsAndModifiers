@@ -10,15 +10,15 @@ import SwiftUI
 struct ContentView: View {
     @State private var colorText = true
     var body: some View {
-        Text("Hello, Swift!")
-            .font(.largeTitle.bold())
-            .foregroundStyle(colorText ? .black : .red)
-        
-        
-        Button("Change Color") {
-            colorText.toggle()
+        VStack(spacing: 15) {
+            Text("Hello, Swift1!")
+                .blur(radius: 1)
+            Text("Hello, Swift1!")
+            Text("Hello, Swift1!")
+            Text("Hello, Swift1!")
+            Text("Hello, Swift1!")
         }
-        .buttonStyle(.borderedProminent)
+        .blur(radius: 1)
     }
 }
 
