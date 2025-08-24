@@ -7,52 +7,25 @@
 
 import SwiftUI
 
-struct ContentView: View {
-    let text1 = Text("Hello, Swift!")
-    let text2 = Text("Hello, SwiftUI!")
-    
-    var text3: some View {
-        VStack {
-            text1
-                .font(.largeTitle.bold())
-                .foregroundStyle(.green)
-            text2
-                .font(.largeTitle.bold())
-                .foregroundStyle(.purple)
-        }
-    }
-    
-    var text4: some View {
-        Group {
-            text1
-                .foregroundStyle(.pink)
-            text2
-                .foregroundStyle(.cyan)
-        }
-    }
-    
-    @ViewBuilder var text5: some View {
-        text1
-            .font(.largeTitle.bold())
-            .foregroundStyle(.yellow)
-        text2
-            .font(.largeTitle.bold())
-            .foregroundStyle(.orange)
-    }
+struct CustomView: View {
+    var text: String
     
     var body: some View {
-        VStack {
-            text1
-                .font(.largeTitle.bold())
+        Text(text)
+            .font(.largeTitle.bold())
+            .padding()
+            .background(.black)
+            .clipShape(.capsule)
+    }
+}
+
+struct ContentView: View {
+    var body: some View {
+        VStack(spacing: 15) {
+            CustomView(text: "Hello, SwiftUI!")
                 .foregroundStyle(.red)
-            text2
-                .font(.largeTitle.bold())
+            CustomView(text: "Hello, Swift!")
                 .foregroundStyle(.blue)
-            text3
-            HStack {
-                text4
-            }
-            text5
         }
     }
 }
