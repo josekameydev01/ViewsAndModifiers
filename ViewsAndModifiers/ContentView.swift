@@ -7,26 +7,45 @@
 
 import SwiftUI
 
-struct CustomView: View {
-    var text: String
-    
-    var body: some View {
-        Text(text)
+struct TitleStyle: ViewModifier {
+    func body(content: Content) -> some View {
+        content
             .font(.largeTitle.bold())
             .padding()
-            .background(.black)
-            .clipShape(.capsule)
+            .background(.gray)
+            .foregroundStyle(.white)
+            .clipShape(.rect(cornerRadius: 10))
+    }
+}
+
+struct WaterMarked: ViewModifier {
+    var text: String
+    func body(content: Content) -> some View {
+        ZStack(alignment: .bottomTrailing) {
+            content
+            Text(text)
+                .font(.caption)
+                .foregroundStyle(.white)
+                .padding(5)
+                .background(.black)
+        }
+    }
+}
+
+extension View {
+    func titleStyle() -> some View {
+        modifier(TitleStyle())
+    }
+    func waterMarked(with text: String) -> some View {
+        modifier(WaterMarked(text: text))
     }
 }
 
 struct ContentView: View {
     var body: some View {
-        VStack(spacing: 15) {
-            CustomView(text: "Hello, SwiftUI!")
-                .foregroundStyle(.red)
-            CustomView(text: "Hello, Swift!")
-                .foregroundStyle(.blue)
-        }
+        Color.blue
+            .frame(width: 300, height: 200)
+            .waterMarked(with: "Hack with Swift!")
     }
 }
 
